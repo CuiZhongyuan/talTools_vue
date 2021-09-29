@@ -19,7 +19,7 @@ import Layout from '@/layout'
  * meta : {
     roles: ['admin','editor']    control the page roles (you can set multiple roles)
     title: 'title'               the name show in sidebar and breadcrumb (recommend set)
-    icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
+    icon: 'svg-name'             the icon show in the sidebar
     breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
     activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
   }
@@ -51,28 +51,52 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '一站式工具平台', icon: 'dashboard' }
     }]
   },
 
   {
-    path: '/example',
+    path: '/classmsg',
+    alwaysShow: true,
     component: Layout,
-    redirect: '/example/table',
+    redirect: '/classmsg/index',
     name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    meta: { title: '课表/消息回归', icon: 'example' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
+        path: 'index',
+        name: 'classmsg',
+        component: () => import('@/views/classmessage/index'),
+        meta: { title: '课表', icon: 'table' }
+      }
+    ]
+  },
+
+
+  {
+    path: '/editproduct',
+    hidden: true,
+    component: Layout,
+    children: [
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'index/:id',
+        name: 'editproduct',
+        component: () => import('@/views/editproduct/index'),
+        meta: { title: '编辑商品', icon: 'form' }
+      }
+    ]
+  },
+
+  {
+    path: '/addclassmsg',
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'addclassmsg',
+        component: () => import('@/views/addclassmsg/index'),
+        meta: { title: '新增课表/消息', icon: 'form' }
       }
     ]
   },
@@ -143,7 +167,6 @@ export const constantRoutes = [
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
         meta: { title: 'menu2' }
       }
     ]
