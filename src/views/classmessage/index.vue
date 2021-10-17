@@ -29,6 +29,12 @@
         </template>
       </el-table-column>
 
+      <el-table-column label="记录ID" width="100">
+        <template slot-scope="scope">
+          {{ scope.row.id }}
+        </template>
+      </el-table-column>
+
       <el-table-column label="分校" width="100">
         <template slot-scope="scope">
           {{ scope.row.school }}
@@ -47,22 +53,15 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="查看测试结果" width="400">
+      <el-table-column label="查看测试结果" width="250">
         <template slot-scope="scope">
           {{ scope.row.testResult }}
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            @click="handleEdit(scope.$index, scope.row)"
-          >编辑</el-button>
-          <el-button
-            size="mini"
-            type="danger"
-            @click="deleteUser(scope.$index)"
-          >删除</el-button>
+          <el-button size="mini" @click="editUser(scope.row.id)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="deleteUser(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
 
@@ -89,6 +88,7 @@ export default {
       },
       list: null,
       formInline: {
+        id: '',
         school: '北京',
         name: '',
         createTime: '',
@@ -107,7 +107,7 @@ export default {
       var vm = this
       this.axios({
         method: 'GET',
-        url: 'http://localhost:8080/api/queryList?school=' + vm.formInline.school + '&name=' + vm.formInline.name
+        url: 'http://localhost:8080/api/queryList?school=' + vm.formInline.school
       }).then(function(response) {
         // 得到一个PageInfo对象
         vm.total = response.data.total// 将PageInfo中的total赋给vm的total
@@ -131,17 +131,8 @@ export default {
     addResult() {
       this.$router.push('/addclassmsg/index')
     },
-    editpro(id) {
-      this.$router.push('/editproduct/index/' + id)
-    },
-    fetchData() {
-      var vm = this
-      this.axios({
-        method: 'GET',
-        url: 'http://localhost:8090/product/list'
-      }).then(function(resp) {
-        vm.list = resp.data
-      })
+    editUser(id) {
+      this.$router.push('/editUser/index/' + id)
     },
     deleteUser(id) {
       var vm = this
@@ -156,7 +147,6 @@ export default {
             message: '删除成功',
             type: 'success'
           })
-          vm.fetchData()// 更新商品列表
         } else {
           vm.$message.error('删除失败')
         }

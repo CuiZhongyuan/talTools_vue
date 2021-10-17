@@ -72,17 +72,16 @@ export const constantRoutes = [
     ]
   },
 
-
   {
-    path: '/editproduct',
+    path: '/editUser',
     hidden: true,
     component: Layout,
     children: [
       {
         path: 'index/:id',
-        name: 'editproduct',
-        component: () => import('@/views/editproduct/index'),
-        meta: { title: '编辑商品', icon: 'form' }
+        name: 'editUser',
+        component: () => import('@/views/editUser/index'),
+        meta: { title: '编辑信息', icon: 'form' }
       }
     ]
   },

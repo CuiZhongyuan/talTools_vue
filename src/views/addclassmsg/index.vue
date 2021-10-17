@@ -21,36 +21,30 @@
 
 <script>
 
-  //发送post请求携带数据时需要导入该模块
-  import Qs from 'qs'
-  import { formatTime } from '../../utils'
-
-
-  export default {
-    data() {
-      return {
-        formInline: {
-          school: '',
-          name: '',
-          createTime:''
-        }
-      }
-    },
-    methods: {
-      onSubmit(){
-        var vm =this;
-        this.axios({
-          method: 'POST',
-          url: 'http://localhost:8080/api/addUser',
-          data:this.formInline
-        }).then(function(resp){
-          // 添加成功后前往商品列表页面
-            vm.$router.push("/classmsg")
-          }
-        );
+export default {
+  data() {
+    return {
+      formInline: {
+        school: '',
+        name: '',
+        createTime: ''
       }
     }
+  },
+  methods: {
+    onSubmit() {
+      var vm = this
+      this.axios({
+        method: 'POST',
+        url: 'http://localhost:8080/api/addUser',
+        data: this.formInline
+      }).then(function(resp) {
+        // 添加成功后前往商品列表页面
+        vm.$router.push('/classmsg')
+      }
+      )
+    }
   }
+}
 </script>
-
 
