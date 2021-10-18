@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="70px">
@@ -40,7 +41,8 @@ export default {
         method: 'GET',
         url: 'http://127.0.0.1:8080/api/queryId?id=' + id
       }).then(function(resp) {
-        vm.form = resp.data.list
+          vm.form.name = resp.data.list[0].name,
+          vm.form.school= resp.data.list[0].school
       })
     },
     onSubmit() {

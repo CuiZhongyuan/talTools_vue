@@ -107,7 +107,7 @@ export default {
       var vm = this
       this.axios({
         method: 'GET',
-        url: 'http://localhost:8080/api/queryList?school=' + vm.formInline.school
+        url: 'http://localhost:8080/api/queryList?school=' + vm.formInline.school + '&&name=' + vm.formInline.name + '&&createTime=' + vm.formInline.createTime
       }).then(function(response) {
         // 得到一个PageInfo对象
         vm.total = response.data.total// 将PageInfo中的total赋给vm的total
