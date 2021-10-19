@@ -147,6 +147,8 @@ export default {
             message: '删除成功',
             type: 'success'
           })
+          // 刷新当前页
+          location.reload()
         } else {
           vm.$message.error('删除失败')
         }
