@@ -99,7 +99,18 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/input',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'input',
+        component: () => import('@/views/input/index'),
+        meta: { title: 'groovy脚本', icon: 'form' }
+      }
+    ]
+  },
   {
     path: '/form',
     component: Layout,
